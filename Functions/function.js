@@ -39,3 +39,20 @@ if(username === undefined) {
 // if someone passed nothing then it shows undefined.
 
 console.log(loginUserName()); // output: "undefined just logged in" because we have called the loginUserName function without passing any arguments which results in the username parameter being undefined. when we try to create the login message using template literals, it will include the string "undefined" instead of a valid username. to avoid this issue, we can provide a default value for the username parameter in the function definition. for example, if we want to set a default username of "Guest", we can do it like this:
+
+function calculateCartPrice(...num){
+    return num;
+}
+
+console.log(calculateCartPrice(100, 200, 300)); // output: [100, 200, 300] because we have called the calculateCartPrice function and passed three numbers as arguments. the function uses the rest parameter syntax to collect all the arguments into an array called num. when we return num from the function, it will return the array containing all the numbers that were passed as arguments. therefore, the output will be [100, 200, 300]. we can also use the spread operator to pass an array of
+
+const user = {
+    username: "Arpit",
+    price: 999,
+}
+
+function handleObject(anyobject) {
+    console.log(`Username: ${anyobject.username}, Price: ${anyobject.price}`);
+}
+ handleObject(user); // output: "Username: Arpit, Price: 999" because we have defined a function called handleObject that takes an object as a parameter and logs the username and price properties of that object to the console. when we call the handleObject function and pass the user object as an argument, it will access the username and price properties of the user object and log them in the specified format. therefore, the output will be "Username: Arpit, Price: 999". we can also use destructuring to extract the properties from the object directly in the function parameters. for example, if we want to extract the username and price properties from the anyobject parameter, we can do it like this:node Functions/function.js  
+ 
