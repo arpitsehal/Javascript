@@ -15,3 +15,38 @@ let a = 500
 console.log(a);
 // console.log(b);
 // console.log(c);
+
+
+// Nested scopes
+
+function  one () {
+    const username = "Arpit"
+
+    function two () {
+        const website = "Youtube"
+        console.log(username); // here, it prints arpit cz in child function u can access parents variables  
+        
+    }
+    // console.log(website); // error : u can't access outside the scope
+
+    two() // call
+}
+one() // call
+
+
+// +++++++++++++++++++++++++++ Example ++++++++++++++++++++++++
+
+function addone (num) {
+    return num + 1
+}
+
+console.log(addone(5));
+ 
+
+// another way 
+
+const addTwo = function (num) { // this is also known as expression. 
+    return num + 2
+}
+
+console.log(addTwo(5));
