@@ -1,0 +1,10 @@
+
+# Claws runtime artifacts (auto-added by installer)
+.claws/
+.mcp.json
+.claws-bin/
+
+# Editor / agent config
+.claude/
+.vscode/
+CLAUDE.md
