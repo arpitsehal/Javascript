@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Learning</title>
+</head>
+<body>
+    <div class = "bg-black">
+        <h1 id = "title" class = "heading">DOM Learning</h1>
+        <p>lorem ipsum dolor sit amet</p>
+    </div>
+
+    <!-- DOM = browser's object-tree of this HTML. JS uses it to read/change the page. -->
+    <script>
+        // window = global object (the browser tab)
+        console.log(window);
+
+        // document = the page itself = entry into the DOM (window.document)
+        console.log(document);
+
+        // useful properties
+        console.log(document.title);            // "DOM Learning"
+        console.log(document.documentElement);  // <html>
+        console.log(document.body);             // <body>
+
+        // navigate the tree
+        const div = document.body.firstElementChild; // <div>
+        console.log(div.firstElementChild);          // <h1>
+        console.log(div.lastElementChild);           // <p>
+
+        // select + change the page
+        const heading = document.getElementById("title"); // pick the h1
+        console.log(heading);
+        document.title = "DOM updated"; // changes the tab title live
+    </script>
+</body>
+</html>

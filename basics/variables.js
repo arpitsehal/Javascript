@@ -1,13 +1,24 @@
-const accountId = 144553
-let email = "2005sehalarpit@gmail.com"
-var password = "12345"
-accountCity =  "Delhi"
-let accountState // undefined
-// accountId = 2  not allowed because accountId is declared with const
-email = "arpit@gmail.com"
-password = "54321"
-accountCity = "Noida"
-console.table([accountId, email, password, accountCity, accountState]); // To print more than one value in a tabular format
+// ---- Variable declarations: const, let, var ----
+
+const accountId = 144553;                 // const -> value is FIXED, cannot be reassigned
+let email = "2005sehalarpit@gmail.com";   // let  -> value CAN change later
+var password = "12345";                   // var  -> old way, AVOID (function scope + hoisting bugs)
+accountCity = "Delhi";                    // no keyword -> creates a global implicitly (bad, fails in strict mode)
+let accountState;                         // declared with no value -> automatically `undefined`
+
+// accountId = 2;  // ❌ TypeError: Assignment to constant variable
+email = "arpit@gmail.com";                // ✅ let can be reassigned
+password = "54321";                       // var can be reassigned too
+accountCity = "Noida";
+
+// console.table prints multiple values as a neat table (handy for debugging)
+console.table([accountId, email, password, accountCity, accountState]);
+
 /*
-    prefer not to use var because of its function scope and hoisting behavior, which can lead to unexpected bugs. Instead, use let for variables that may change and const for variables that should not change.
+  INTERVIEW NOTES:
+  - const -> block-scoped, cannot be REASSIGNED (but an object's contents CAN still change).
+  - let   -> block-scoped, can be reassigned.
+  - var   -> function-scoped, hoisted as `undefined`; avoid it to dodge surprise bugs.
+  - Rule of thumb: use `const` by default, `let` only when the value must change, never `var`.
+  - A variable declared without a value holds `undefined`.
 */

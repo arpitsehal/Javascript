@@ -1,41 +1,52 @@
 const myArray = [1, 2, 3, 4, 5];
-console.log(myArray); // [1, 2, 3, 4, 5]
-console.log(myArray[0]); // 1
-const myHeroes = ['Superman', 'Batman']
+console.log(myArray);     // [1, 2, 3, 4, 5]
+console.log(myArray[0]);  // 1  -> arrays are 0-indexed (the first item is index 0)
+const myHeroes = ['Superman', 'Batman'];
 
-// Array Methods
+// ---- Methods that CHANGE the original array (mutating) ----
+myArray.push(6);      // add to the END       -> [1,2,3,4,5,6]
+console.log(myArray);
+myArray.pop();        // remove from the END  -> [1,2,3,4,5]
+console.log(myArray);
+myArray.unshift(2);   // add to the START     -> [2,1,2,3,4,5]
+console.log(myArray);
+myArray.shift();      // remove from the START-> [1,2,3,4,5]
+console.log(myArray);
 
-myArray.push(6) // adds an element to the end of the array
-console.log(myArray) // [1, 2, 3, 4, 5, 6]
-myArray.pop() // removes the last element of the array
-console.log(myArray) // [1, 2, 3, 4, 5]
-myArray.unshift(2) // adds an element to the beginning of the array
-console.log(myArray) // [2, 1, 2, 3, 4, 5]
-myArray.shift() // removes the first element of the array
-console.log(myArray) // [1, 2, 3, 4, 5]
+// join() -> combines all elements into ONE string (does NOT change the original)
+const newArray = myArray.join();
+console.log(newArray); // "1,2,3,4,5"
 
-const newArray = myArray.join() // joins all the elements of the array into a string
-console.log(newArray) // "1,2,3,4,5"
+// ---- slice vs splice (very common interview question!) ----
+console.log("A ", myArray);
 
-// Slice , Splice
+// slice(start, end): COPIES a portion. `end` is NOT included. Original stays the same.
+const myArr1 = myArray.slice(1, 3);
+console.log(myArr1); // [2, 3]
 
-console.log("A ", myArray)
-const myArr1 = myArray.slice(1, 3) // [2, 3] - it will return a new array containing the elements from index 1 to index 3 (4 is not included)
-console.log(myArr1)
+// splice(start, deleteCount): REMOVES items in place. CHANGES (mutates) the original.
+const myArr2 = myArray.splice(1, 3);
+console.log(myArr2);         // [2, 3, 4] -> the removed items
+console.log("B ", myArray); // [1, 5]    -> original is now modified
 
-const myArr2 = myArray.splice(1, 3) // [2, 3, 4] - it will remove the elements from index 1 to index 3 (4 is included) and return the removed elements as a new array. it manipulates the original array and changes it.
-console.log(myArr2)
-console.log("B ", myArray) // [1, 5] - the original array is changed after using splice method.
+// ---- Merging arrays ----
+const marvel = ['Ironman', 'Captain America', 'Thor', 'Hulk'];
+const dc = ['Superman', 'Batman', 'Wonder Woman'];
 
-const marvel = ['Ironman', 'Captain America', 'Thor', 'Hulk']
-const dc = ['Superman', 'Batman', 'Wonder Woman']
+marvel.push(dc); // ❌ pushes the WHOLE dc array as a single NESTED element
+console.log(marvel); // [..., ['Superman','Batman','Wonder Woman']]
 
-marvel.push(dc) // it will add dc array to the marvel array
-console.log(marvel) // ['Ironman', 'Captain America', 'Thor', 'Hulk', ['Superman', 'Batman', 'Wonder Woman']]
-// not a good way to merge
+const allHeroes = marvel.concat(dc); // ✅ concat merges into one new flat array
+console.log(allHeroes);
 
-const allHeroes = marvel.concat(dc) // it will merge the two arrays and return a new array
-console.log(allHeroes) // ['Ironman', 'Captain America', 'Thor', 'Hulk', 'Superman', 'Batman', 'Wonder Woman']
+console.log(Array.isArray("marvel")); // false -> checks if a value is an array
+console.log(Array.from("marvel"));    // ['m','a','r','v','e','l'] -> string to char array
 
-console.log(Array.isArray("marvel")) // false - it will check if the marvel variable is an array or not
-console.log(Array.from("marvel")) // ['m', 'a', 'r', 'v', 'e', 'l'] - it will convert the string "marvel" into an array of characters
+/*
+  INTERVIEW NOTES:
+  - slice = COPY (safe, returns a new array). splice = CUT (mutates the original).
+    Memory trick: spli-CE has a "C" for "Change".
+  - Prefer concat or spread to merge: [...marvel, ...dc] (modern way).
+  - Mutating methods:      push, pop, shift, unshift, splice, sort, reverse.
+  - Non-mutating methods:  slice, concat, map, filter, join.
+*/

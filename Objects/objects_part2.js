@@ -1,44 +1,52 @@
-// const InstaUser = new Object() // singleton object created using the Object constructor. It is an empty object.
-// console.log(InstaUser) // output: {} because it is an empty object.
-const InstaUser2 = {} // object literal. It is also an empty object. It is a more common way to create objects in JavaScript. both of them are the same and they are used to create objects in JavaScript. The object literal is more concise and easier to read than the Object constructor. It is also more efficient because it does not require the overhead of calling a constructor function. Therefore, it is recommended to use the object literal syntax to create objects in JavaScript.
-// console.log(InstaUser2) // output: {} because it is an empty object.
+// Two ways to create an object:
+// const InstaUser = new Object(); // constructor way (verbose, rarely used)
+const InstaUser2 = {}; // object literal -> preferred, concise
 
-InstaUser2.id = "12345" // adding a property to the object using dot notation.
-InstaUser2.name = "Sehal" // adding a property to the object using dot notation.
-InstaUser2.isLoggedIn = true // adding a property to the object using dot notation.
+// add properties with dot notation
+InstaUser2.id = "12345";
+InstaUser2.name = "Sehal";
+InstaUser2.isLoggedIn = true;
 
-const regularUser = { 
+// ---- Nested object: an object inside another object ----
+const regularUser = {
     email: "some@example.com",
-    fullname: { // nested object = an object inside another object.
+    fullname: {
         firstname: "Sehal",
         lastname: "Sharma"
     }
-}   
+};
+console.log(regularUser.fullname); // access the nested object
+// go deeper: regularUser.fullname.firstname -> "Sehal"
 
-console.log(regularUser.fullname);
+// ---- Merging objects ----
+const obj1 = {1 : "one", 2 : "two"};
+const obj2 = {3 : "three", 4 : "four"};
 
-// merging objects using assign method. we can't use this method to merge more than two objects. it only merges two objects at a time. if we want to merge more than two objects, we can use the spread operator.
+// Object.assign(target, ...sources): merge sources into the first (empty) object
+const mergedObj = Object.assign({}, obj1, obj2);
+console.log(mergedObj);
 
-const obj1 = {1 : "one", 2 : "two"}
-const obj2 = {3 : "three", 4 : "four"}
-const mergedObj = Object.assign({}, obj1, obj2)
-console.log(mergedObj)
+// Spread syntax: the modern, cleaner way to merge
+const mergedObj2 = {...obj1, ...obj2};
+console.log(mergedObj2);
 
-// merging using spread operator. it is a more modern way to merge objects in JavaScript. it is also more concise and easier to read than the Object.assign() method. it can merge more than two objects at a time.
-const mergedObj2 = {...obj1, ...obj2}
-console.log(mergedObj2)
-
-
-
-// when object comes from database.
+// ---- Real-world: data from a database often arrives as an array of objects ----
 const user = [
     {userId: 1, name: "Sehal", age: 25},
     {userId: 2, name: "John", age: 30},
-    {userId: 3, name: "Jane", age: 28}  
-]
+    {userId: 3, name: "Jane", age: 28}
+];
+user[0].name; // access the first object's name -> "Sehal"
 
-user[0].name // to access the property of the first object in the array. it will return "Sehal". we can also use dot notation to access the properties of the objects in the array. we can also use bracket notation to access the properties of the objects in the array. it is a good practice to use bracket notation when the property name is stored in a variable. for example, if we want to access the name property of the first object in the array, we can do it like this:
+// ---- Object utility methods (each returns an ARRAY) ----
+console.log(Object.keys(InstaUser2));    // ["id","name","isLoggedIn"]  -> array of keys
+console.log(Object.values(InstaUser2));  // ["12345","Sehal",true]      -> array of values
+console.log(Object.entries(InstaUser2)); // [["id","12345"], ...]       -> array of [key,value] pairs
 
-console.log(Object.keys(InstaUser2)); // it stores value in an array and it returns an array of the keys of the object. it is a good practice to use this method to get the keys of an object because it is more efficient than using a for...in loop to iterate over the properties of the object. it also returns only the own properties of the object and it does not return the inherited properties of the object.
-console.log(Object.values(InstaUser2)); // it stores value in an array and it returns an array of the values of the object. it is a good practice to use this method to get the values of an object because it is more efficient than using a for...in loop to iterate over the properties of the object. it also returns only the own properties of the object and it does not return the inherited properties of the object.
-console.log(Object.entries(InstaUser2)); // it stores value in an array and it returns an array of the key-value pairs of the object. it is a good practice to use this method to get the key-value pairs of an object because it is more efficient than using a for...in loop to iterate over the properties of the object. it also returns only the own properties of the object and it does not return the inherited properties of the object.
+/*
+  INTERVIEW NOTES:
+  - The object literal {} is preferred over new Object().
+  - Merge: {...a, ...b}  or  Object.assign({}, a, b). On key clashes, the LAST one wins.
+  - Object.keys / values / entries turn an object into arrays you can map/filter/loop.
+  - These spread/assign merges are SHALLOW copies (nested objects stay shared/referenced).
+*/

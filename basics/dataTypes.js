@@ -1,18 +1,31 @@
-// alert("hey") to show alert box but we are using node js not browser so we will use console.log() to print something on console
-let name = "Arpit" // string
-let age = 19 // number
-let isLoggedIn = false //boolean
+// In a browser you could use alert("hey"); but in Node.js we use console.log() to print.
 
-console.log(typeof name) // to check the data type of a variable
-console.log(typeof age)
-console.log(typeof isLoggedIn)
+let name = "Arpit";       // string
+let age = 19;             // number
+let isLoggedIn = false;   // boolean
 
-// premitive data types in js are string, number, boolean, null, undefined, symbol, BigInt. they are call by value data types because they store the actual value in the variable and when we assign a variable to another variable it creates a copy of the value and assigns it to the new variable. so if we change the value of the new variable it does not affect the original variable.
+console.log(typeof name);       // "string"  -> typeof tells you a value's data type
+console.log(typeof age);        // "number"
+console.log(typeof isLoggedIn); // "boolean"
 
-// non premitive/Reference data types in js are object, array, function. they are call by reference data types because they store the reference of the value in the variable and when we assign a variable to another variable it creates a reference to the value and assigns it to the new variable. so if we change the value of the new variable it also changes the original variable because both variables are pointing to the same value in memory.
+/*
+  PRIMITIVE types (7): string, number, boolean, null, undefined, symbol, bigint
+  - Stored & copied BY VALUE -> copying a variable makes an independent copy.
+    Changing the copy does NOT affect the original.
 
-//function
+  NON-PRIMITIVE / Reference types: object, array, function
+  - Stored & copied BY REFERENCE -> copying copies the *address*, not the data.
+    Both variables point to the SAME thing, so changing one changes the other.
+*/
 
+// A function stored in a variable = "function expression"
 const myFunc = function() {
-    console.log("This is a function")
-}
+    console.log("This is a function");
+};
+
+/*
+  INTERVIEW NOTES:
+  - typeof null === "object"  -> famous long-standing JavaScript bug, remember it!
+  - typeof function === "function" (functions are special callable objects).
+  - Primitive = copy by value; Reference (object/array/function) = copy by reference.
+*/

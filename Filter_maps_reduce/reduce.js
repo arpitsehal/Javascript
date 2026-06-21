@@ -1,13 +1,22 @@
-// reduce in function
+const myNums = [ 1, 2, 3 ];
 
-const myNums = [ 1,2,3]
+// reduce: boils an array down to a SINGLE value.
+// callback(accumulator, currentValue) ; the 2nd arg (0) is the STARTING accumulator.
+const myTotal = myNums.reduce(function (acc, curval) {
+    return acc + curval;   // acc carries the running total across each item
+}, 0);
+console.log(myTotal); // 6   (0+1=1, then 1+2=3, then 3+3=6)
 
-const myTotal =myNums.reduce(function (acc, curval) {
-    return acc + curval;
-}, 0) // 0 is the initial value of the accumulator
-
-console.log(myTotal); // 6 because reduce method executes a reducer function on each element of the array, resulting in a single output value. The reducer function takes two arguments: the accumulator and the current value. The initial value of the accumulator is provided as the second argument to the reduce method (in this case, 0). The reducer function is called for each element in the array, and the result is stored in the accumulator, which is returned at the end of the reduce method.
-
-// reduce with arrow function
+// same thing written with an arrow function
 const myTotal2 = myNums.reduce( (acc, curval) => acc + curval, 0 );
-console.log(myTotal2); // 6 because reduce method executes a reducer function on each element of the array, resulting in a single output value. The reducer function takes two arguments: the accumulator and the current value. The initial value of the accumulator is provided as the second argument to the reduce method (in this case, 0). The reducer function is called for each element in the array, and the result is stored in the accumulator, which is returned at the end of the reduce method.
+console.log(myTotal2); // 6
+
+/*
+  INTERVIEW NOTES:
+  - Signature: arr.reduce((acc, cur) => ..., initialValue).
+  - ALWAYS pass an initialValue: with it, reduce on [] safely returns that value;
+    without it, reduce on an empty array THROWS a TypeError.
+  - Whatever you return becomes the next `acc`.
+  - reduce is the most powerful array method — it can re-implement map, filter, sum,
+    max, grouping, flattening, etc. (classic example: a shopping-cart total).
+*/

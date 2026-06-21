@@ -1,19 +1,31 @@
-let myDate = new Date()
-console.log(myDate)
+let myDate = new Date();   // a Date object for the CURRENT date & time
+console.log(myDate);
 
-console.log(myDate.toString()) // Wed Jun 19 2024 17:30:00 GMT+0530 (India Standard Time)
-console.log(myDate.toDateString()) // Wed Jun 19 2024
-console.log(myDate.toTimeString()) // 17:30:00 GMT+0530 (India Standard Time)
-console.log(myDate.toLocaleString()) // 6/19/2024, 5:30:00 PM
-console.log(myDate.toLocaleDateString()) // 6/19/2024
-console.log(myDate.toLocaleTimeString()) // 5:30:00 PM
+// Converting a date into readable text:
+console.log(myDate.toString());           // full date + time + timezone
+console.log(myDate.toDateString());       // just the date -> "Wed Jun 19 2024"
+console.log(myDate.toTimeString());       // just the time
+console.log(myDate.toLocaleString());     // date + time in your locale -> "6/19/2024, 5:30:00 PM"
+console.log(myDate.toLocaleDateString()); // local date only
+console.log(myDate.toLocaleTimeString()); // local time only
 
-console.log(typeof myDate) // object
+console.log(typeof myDate); // "object" -> a Date is an object, not a primitive
 
-let myDateOne = new Date('2024, 0, 19')
-console.log(myDateOne) // Sat Jan 19 2024 00:00:00 GMT+0530 (India Standard Time)
+// Creating a SPECIFIC date (careful: the month is 0-indexed, so 0 = January)
+let myDateOne = new Date('2024, 0, 19');
+console.log(myDateOne);
 
-let myTimeStamp = Date.now()
-console.log(myTimeStamp) // 1718785800000 - it will give us the number of milliseconds since January 1, 1970, 00:00:00 UTC. This is also known as the Unix timestamp or epoch time.
+// Date.now() -> milliseconds elapsed since Jan 1, 1970 UTC (the "Unix epoch")
+let myTimeStamp = Date.now();
+console.log(myTimeStamp);
 
-console.log(Math.floor(Date.now()/1000)) // 1718785800 - it will give us the number of seconds since January 1, 1970, 00:00:00 UTC. This is also known as the Unix timestamp or epoch time in seconds.
+// Convert ms -> seconds (divide by 1000, floor to drop the decimals)
+console.log(Math.floor(Date.now()/1000));
+
+/*
+  INTERVIEW NOTES:
+  - Months are 0-indexed (0=Jan, 11=Dec) but the day of the month is 1-indexed. Classic trap!
+  - typeof a Date is "object".
+  - A timestamp = milliseconds since 1 Jan 1970 UTC (the Unix epoch); Date.now() returns it.
+  - Common getters: getFullYear(), getMonth(), getDate(), getDay() (0=Sunday), getHours().
+*/

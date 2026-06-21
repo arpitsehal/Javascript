@@ -1,16 +1,14 @@
-// syntax of switch statement
-// switch (expression) {   
+// switch compares ONE value against multiple `case`s using strict equality (===).
+// Syntax:
+// switch (expression) {
 //     case value1:
-//         // code to be executed if expression === value1
-//         break;   
-//     case value2:
-//         // code to be executed if expression === value2
-//         break;   
+//         // runs if expression === value1
+//         break;            // stop here and exit the switch
 //     default:
-//         // code to be executed if expression doesn't match any case
+//         // runs if no case matched
 // }
 
-const month = 3
+const month = 3;
 
 switch(month) {
     case 1:
@@ -20,21 +18,28 @@ switch(month) {
         console.log("February");
         break;
     case 3:
-        console.log("March");
-        break;  
+        console.log("March");   // this runs (month === 3)
+        break;
     case 4:
         console.log("April");
         break;
     case 5:
         console.log("May");
-        break;  
-    case 6: 
+        break;
+    case 6:
         console.log("June");
         break;
-    case 7: 
+    case 7:
         console.log("July");
         break;
-    default:
-        console.log("Invalid month"); 
+    default:                    // runs when no case matches
+        console.log("Invalid month");
 }
 
+/*
+  INTERVIEW NOTES:
+  - Without `break`, execution "falls through" into the next case(s) — a classic bug.
+  - Intentional fall-through (stacking several cases together) is sometimes used on purpose.
+  - switch uses === (strict), so "3" would NOT match case 3.
+  - Use switch for many fixed values; use if/else for ranges or complex conditions.
+*/
