@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="parent">
+        <div class="child">Child 1</div>
+        <div class="child">Child 2</div>
+        <div class="child">Child 3</div>
+    </div>
+</body>
+
+<!-- Traversal: move through the DOM tree from a starting element.
+     children      -> HTMLCollection of ELEMENT children only (live, no forEach)
+     childNodes    -> NodeList of ALL nodes incl. text/whitespace/comments
+     element-only props: firstElementChild, lastElementChild,
+                         nextElementSibling, previousElementSibling, parentElement -->
+<script>
+    // querySelector -> first element matching the CSS selector
+    const parent = document.querySelector(".parent");
+    console.log(parent) // the parent div with all its children
+
+    // .children = HTMLCollection of element children ONLY (skips text nodes)
+    const children = parent.children;
+    console.log(children) // HTMLCollection(3) of the 3 <div>s
+
+    // HTMLCollection is array-LIKE, not a real array -> use a normal for-loop
+    // (no .forEach / .map directly; convert with Array.from() if needed)
+    for (let i = 0; i < children.length; i++) {
+        console.log(children[i].textContent); // Child 1, Child 2, Child 3
+    }
+
+    // index into the collection + change style (camelCase CSS property)
+    parent.children[1].style.color = "red"; // 2nd child turns red
+
+    // .childNodes = NodeList of ALL nodes, INCLUDING text nodes (whitespace
+    // between tags shows up as "#text"). This is the key children vs childNodes diff.
+    console.log("NODES :" , parent.childNodes)
+
+    // Handy element-only traversal:
+    console.log(parent.firstElementChild);   // <div>Child 1</div>
+    console.log(parent.lastElementChild);    // <div>Child 3</div>
+    console.log(children[0].nextElementSibling); // <div>Child 2</div>
+    console.log(parent.childElementCount);   // 3
+</script>
+</html>

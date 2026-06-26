@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class = "language-list">
+        <li>javascript</li>
+    </ul>
+</body>
+
+<!-- Create / Add / Edit / Remove elements.
+     createElement  -> makes a new element (not on the page yet)
+     appendChild    -> adds the node as the LAST child of a parent
+     innerHTML      -> sets content, but PARSES HTML (XSS risk with user input)
+     createTextNode -> safer/faster way to add plain text (no HTML parsing) -->
+<script>
+    // --- CREATE + ADD ---
+    function addLanguage(langName){
+        const li = document.createElement("li"); // make a new <li> in memory
+        li.innerHTML = `${langName}`;            // quick, but parses HTML
+        document.querySelector('.language-list')
+        .appendChild(li);                        // put it on the page (last child)
+    }
+    addLanguage("python");
+    addLanguage("java");
+
+    // Optimized / safer way to add text (no HTML parsing):
+    function addLanguageOptimized(langName){
+        const li = document.createElement("li");
+        li.appendChild(document.createTextNode(langName)); // textNode = safe text
+        document.querySelector('.language-list').appendChild(li);
+    }
+    addLanguageOptimized("python-2");
+
+    // --- EDIT an existing element ---
+    // textContent -> simple text (preferred); innerHTML -> when you need HTML
+    const secondLang = document.querySelector('.language-list li:nth-child(2)');
+    if (secondLang) secondLang.textContent = "modified language";
+
+    // Replace an element entirely:
+    const newli = document.createElement("li");
+    newli.textContent = "golang";
+    const firstLang = document.querySelector('.language-list li:first-child');
+    if (firstLang) firstLang.replaceWith(newli); // oldEl.replaceWith(newEl)
+
+    // --- REMOVE an element ---
+    const lastLang = document.querySelector('.language-list li:last-child');
+    if (lastLang) lastLang.remove(); // modern; older: parent.removeChild(child)
+</script>
+</html>
