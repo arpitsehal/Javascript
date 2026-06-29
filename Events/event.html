@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html events</title>
+</head>
+<body>
+    <h1>JavaScript Events Demo</h1>
+    <p>Open the console (F12) and interact with the elements below.</p>
+
+    <!-- 1) attach events -->
+    <button id="clickBtn">Click me</button>
+
+    <!-- 2) bubbling vs capturing -->
+    <div id="parent" style="padding:20px; background:#eee;">
+        parent
+        <button id="child">child</button>
+    </div>
+
+    <!-- 3) preventDefault + stopPropagation -->
+    <a id="myLink" href="https://google.com">This link won't navigate</a>
+
+
+    <!-- 4) event delegation -->
+    <ul id="langs">
+        <li id="javascript">JavaScript</li>
+        <li id="python">Python</li>
+        <li id="java">Java</li>
+        <li id="cpp" onclick="alert('C++ clicked')">C++</li> 
+        <!-- //inline event handler : this onclick can be used but we prefer to use addEventListener instead of inline event handlers -->
+        </ul>
+
+    <script>
+        // =========================================================
+        // 1) THREE WAYS TO ATTACH AN EVENT
+        // =========================================================
+
+        // (a) Inline onclick  -> see <li id="cpp"> above. Works, but mixes
+        //     JS into HTML. Avoid in real projects.
+
+        // (b) DOM property (.onclick) -> only ONE handler allowed.
+        //     If you assign .onclick again, it OVERWRITES this one.
+        document.getElementById("javascript").onclick = function () {
+            alert("JavaScript clicked");
+        };
+
+        // (c) addEventListener -> BEST. You can add many handlers to the
+        //     same element and none of them overwrite each other.
+        document.getElementById("python").addEventListener("click", function () {
+            alert("Python clicked");
+        });
+
+
+        // =========================================================
+        // 2) EVENT PROPAGATION: BUBBLING vs CAPTURING
+        // =========================================================
+        // 3rd argument of addEventListener:
+        //   false (default) = BUBBLING  -> child runs first, then parents (child -> up)
+        //   true            = CAPTURING -> parent runs first, then child (parent -> down)
+
+        // Listener on the PARENT (the <ul>)
+        document.getElementById("langs").addEventListener("click", function (e) {
+            console.log("UL clicked");
+        }, false); // bubbling
+
+        // Listener on a CHILD (the <li>)
+        document.getElementById("javascript").addEventListener("click", function (e) {
+            console.log("LI clicked");
+            // stopPropagation() = stop this event from travelling up to the <ul>.
+            // So "UL clicked" will NOT log when you click JavaScript.
+            e.stopPropagation();
+        }, false); // bubbling
+
+
+        // =========================================================
+        // 3) preventDefault() — stop the browser's default action
+        // =========================================================
+        document.getElementById("myLink").addEventListener("click", function (e) {
+            // A link normally navigates to its href. preventDefault() cancels that.
+            // Note: this is DIFFERENT from stopPropagation() (which stops bubbling).
+            e.preventDefault();
+        }, false);
+
+
+        // =========================================================
+        // 4) EVENT DELEGATION — one listener handles many children
+        // =========================================================
+        // Instead of adding a listener to every <li>, we add ONE listener to
+        // the parent <ul>. The click "bubbles up" from the clicked <li> to the
+        // <ul>, and e.target tells us exactly which <li> was clicked.
+        // Bonus: this also works for <li>s added to the list LATER.
+        document.querySelector('#langs').addEventListener('click', function (e) {
+            console.log(e.target.parentNode); // e.target = clicked <li>; its parent = the <ul>
+            e.target.remove();                 // remove the clicked <li> from the page
+        }, false);
+    </script>
+</body>
+</html>
