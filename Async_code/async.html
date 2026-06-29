@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Async JavaScript</h1>
+    <button id = "stopButton">Stop</button>
+</body>
+<script>
+setTimeout(function(){   // Method - 1 to use setTimeout
+    console.log("Arpit")
+}, 2000)
+
+   const sayArpit = function(){  // Method - 2 to use setTimeout
+        console.log("Arpit");
+    }
+    setTimeout(sayArpit, 2000) 
+
+    const changeText = function(){ // It can change text in h1 tag after 2 secs
+        document.querySelector('h1').innerHTML = "updated H1"
+    }
+    const changeMe = setTimeout(changeText, 2000)
+
+    document.querySelector('#stopButton').   // '#' because stopButton is an id
+    addEventListener('click', function(){
+        clearTimeout(changeMe)   // pass the timer id, not a string
+        console.log("Stopped")
+    })
+
+    const print = setInterval(function(){   // it is used to print anything in an interval after given seconds.
+        console.log("Arpit")
+    }, 1000) // it will print Arpit after every 1 second.
+
+    clearInterval(print) //it is used to stop set interval calls 
+    
+</script>
+</html>
