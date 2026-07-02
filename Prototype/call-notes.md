@@ -1,5 +1,7 @@
 # `call()` and `this` in JavaScript — Interview-Ready Notes
 
+---
+
 ## 1. The Core Problem
 
 When one function calls another **plain** function, the inner function does **not** inherit the outer function's `this`. It gets its **own** execution context.

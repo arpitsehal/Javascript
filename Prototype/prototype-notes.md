@@ -1,5 +1,6 @@
 # Prototype in JavaScript — Interview-Ready Notes
 
+--- 
 
 ## 1. The One-Line Definition
 
