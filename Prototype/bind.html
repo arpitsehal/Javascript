@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bind in JavaScript — chai aur javascript</title>
+</head>
+<body>
+    <!-- Click this button and open the console (F12 -> Console) to see the output. -->
+    <button>Button Clicked</button>
+</body>
+<script>
+    // ==================================================================
+    //  bind in JavaScript  —  the classic "lost this" problem
+    // ==================================================================
+    // A mini React-like class. Lesson: when you pass a method as an
+    // event-handler callback, it loses its `this`, because `this` is
+    // decided by the CALL-SITE, not where the method is defined.
+
+    class React{
+            constructor(){
+                this.library = "React";
+                this.server = "https://reactjs.org/";
+
+                // When the click fires, the browser calls handleClick with
+                // `this` = the <button> element (the event target), NOT this
+                // React instance -> this.server would be undefined.
+                //
+                // ❌ Without bind:
+                //    .addEventListener('click', this.handleClick)
+                //    -> logs undefined
+                //
+                // ✅ .bind(this) returns a NEW function whose `this` is
+                //    permanently locked to this React instance.
+                document.querySelector('button').addEventListener('click', this.handleClick.bind(this));
+            }
+
+            handleClick(){
+                console.log('Button clicked');
+                console.log(this.server);  // https://reactjs.org/ — works only because of bind
+            }
+    }
+
+    // Creating the instance runs the constructor, which wires up the listener.
+    const app = new React();
+</script>
+</html>
