@@ -29,6 +29,21 @@ Go top to bottom — each topic builds on the ones above it.
 | 12 | **Execution Context & Call Stack** | [`Execution_Context_and_Call_Stack/`](Execution_Context_and_Call_Stack/notes.md) | How JS actually runs your code, line by line |
 | 13 | **Date & Time** | [`Date_and_time/`](Date_and_time/NOTES.md) | The `Date` object and timestamps |
 | 14 | **DOM** | [`Dom/`](Dom/DOM-notes.md) | Reading and changing the web page from JS |
+| 15 | **Events** | [`Events/`](Events/events-notes.md) | Event listeners, the event object, bubbling & delegation |
+| 16 | **Async JavaScript** | [`Async_code/`](Async_code/async-notes.md) | Call stack, event loop, `setTimeout`, callbacks |
+| 17 | **Promises & Fetch (API)** | [`Api/`](Api/promises-notes.md) | Promises, `async/await`, and calling APIs with `fetch` |
+| 18 | **OOP** | [`OOP/`](OOP/notes.md) | Objects, `this`, constructor functions, `new` |
+| 19 | **Prototypes & Classes** | [`Prototype/`](Prototype/prototype-notes.md) | Prototype chain, `class`, inheritance, `call`/`bind`, getters/setters |
+
+### Prototype folder — deep dives
+
+| Topic | Notes |
+|-------|-------|
+| Prototype chain | [`prototype-notes.md`](Prototype/prototype-notes.md) |
+| Classes & inheritance | [`classes-inheritance-notes.md`](Prototype/classes-inheritance-notes.md) |
+| `call` / `apply` / `bind` | [`call-notes.md`](Prototype/call-notes.md) · [`bind-notes.md`](Prototype/bind-notes.md) |
+| Property descriptors | [`property-descriptors-notes.md`](Prototype/property-descriptors-notes.md) |
+| Getters & setters | [`getter-setter-notes.md`](Prototype/getter-setter-notes.md) |
 
 ## How each NOTES file is laid out
 
